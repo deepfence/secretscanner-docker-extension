@@ -10,6 +10,8 @@ import { createDockerDesktopClient } from '@docker/extension-api-client';
 import { Stack, TextField, Typography } from '@mui/material';
 import SecretTable from './Components/secret-table';
 import { Box } from '@mui/system';
+import FullScreenDialog from './Components/details-dialog';
+
 // import {} from './assets/images/';
 
 // Note: This line relies on Docker Desktop's presence as a host application.
@@ -50,6 +52,17 @@ interface Secret {
 export function App() {
   const [response, setResponse] = React.useState<Secret[]>();
   const ddClient = useDockerDesktopClient();
+  const [open, setOpen] = React.useState(true);
+  const [row, setRow] = React.useState({})
+
+  const handleClickOpen = (row) => {
+      setOpen(true);
+      setRow(row)
+  };
+
+  const handleClose = () => {
+      setOpen(false);
+  };
 
   const fetchAndDisplayResponse = async (image, setLoading) => {
     setLoading(true)
@@ -67,7 +80,6 @@ export function App() {
 
   return (
     <>
-
       <Box sx={{ marginTop: '2rem' }}>
         <Box sx={{ m: '2rem', marginBottom: '1rem' }}>
           {/* <Links /> */}
@@ -90,8 +102,13 @@ export function App() {
       <Divider style={{ marginTop: 10, marginBottom: 10 }} />
       {response && <SecretTable
         rows={response}
+        handleClickOpen={handleClickOpen}
       />}
-
+      <FullScreenDialog 
+        open={open}
+        handleClose={handleClose}
+        row={row}
+      />
     </>
   );
 }
