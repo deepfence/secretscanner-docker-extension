@@ -9,6 +9,7 @@ import ImageSearch from "./Components/ImageSearch";
 import { createDockerDesktopClient } from '@docker/extension-api-client';
 import { Stack, TextField, Typography } from '@mui/material';
 import SecretTable from './Components/secret-table';
+import { Box } from '@mui/system';
 // import {} from './assets/images/';
 
 // Note: This line relies on Docker Desktop's presence as a host application.
@@ -66,21 +67,28 @@ export function App() {
 
   return (
     <>
-      <Stack direction="row" alignItems="start" spacing={2} sx={{ mt: 4 }}>
-        <div>
-          <Typography variant="h3">Deepfence SecretScanner</Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
-            Deepfence SecretScanner can find unprotected secrets in container images or file systems.
-          </Typography>
 
-          <Typography variant="body1" color="text.secondary" sx={{ mt: 0 }}>
-            Select the image from the dropdown and scan for secrets.
-          </Typography>
-        </div>
-      </Stack>
+      <Box sx={{ marginTop: '2rem' }}>
+        <Box sx={{ m: '2rem', marginBottom: '1rem' }}>
+          {/* <Links /> */}
+          <Box sx={{ display: 'flex' }}>
+            <img style={{marginTop: '0.5rem' }} src="images/deepfence.svg" alt="Deepfence Logo" height="60px" />
+            <Box sx={{ marginLeft: '1.5rem', marginTop: '0rem' }}>
+              <Typography variant="h3">Deepfence SecretScanner</Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
+                Deepfence SecretScanner can find unprotected secrets in container images or file systems.
+              </Typography>
+
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 0 }}>
+                Select the image from the dropdown and scan for secrets.
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
       <ImageSearch onChange={fetchAndDisplayResponse} />
       <Divider style={{ marginTop: 10, marginBottom: 10 }} />
-      { response && <SecretTable
+      {response && <SecretTable
         rows={response}
       />}
 
