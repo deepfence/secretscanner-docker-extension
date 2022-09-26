@@ -1,0 +1,19 @@
+{
+  "icon": "Deepfence_Logo_Mark.svg",
+  "vm": {
+    "composefile": "docker-compose.yaml",
+    "exposes": {
+      "socket": "extension-secretscanner-docker-extension.sock"
+    }
+  },
+  "ui": {
+    "dashboard-tab": {
+      "title": "SecretScanner",
+      "src": "index.html",
+      "root": "ui",
+      "backend": {
+        "socket": "extension-secretscanner-docker-extension.sock"
+      }
+    }
+  }
+}

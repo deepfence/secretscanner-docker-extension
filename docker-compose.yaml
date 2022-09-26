@@ -1,0 +1,18 @@
+services:
+  secretscanner-docker-extension:
+    image: ${DESKTOP_PLUGIN_IMAGE}
+
+  deepfence-secret-scanner:
+    container_name: deepfence-secret-scanner
+    image: deepfenceio/deepfence_secret_scanner_ce:latest
+    ulimits:
+      core: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    entrypoint: /home/deepfence/usr/SecretScanner
+    command: ["-config-path","/home/deepfence/usr", "-standalone-http-port", "8011"]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1g"
