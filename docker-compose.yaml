@@ -1,5 +1,6 @@
+version: '3'
 services:
-  secretscanner-docker-extension:
+  app:
     image: ${DESKTOP_PLUGIN_IMAGE}
 
   deepfence-secret-scanner:

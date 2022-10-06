@@ -1,4 +1,4 @@
-IMAGE?=deepfenceio/secretscanner-docker-extension
+IMAGE?=deepfenceio/secretscanner-extension
 TAG?=latest
 
 BUILDER=buildx-multi-arch

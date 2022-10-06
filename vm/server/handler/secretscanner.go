@@ -6,13 +6,14 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"secretscanner-docker-extension/server"
+	"secretscanner-extension/server"
 
 	"github.com/labstack/echo"
 	"github.com/sirupsen/logrus"
 )
 
 func SecretScannerScanHandler(ctx echo.Context) error {
+	logrus.Infof("starting to scan")
 	ssReq := new(server.SecretScannerScanRequest)
 	if err := ctx.Bind(ssReq); err != nil {
 		return err

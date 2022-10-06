@@ -1,4 +1,4 @@
-module secretscanner-docker-extension
+module secretscanner-extension
 
 go 1.17
 

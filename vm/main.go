@@ -4,8 +4,8 @@ import (
 	"flag"
 	"log"
 	"os"
-	"secretscanner-docker-extension/server"
-	"secretscanner-docker-extension/server/handler"
+	"secretscanner-extension/server"
+	"secretscanner-extension/server/handler"
 
 	"github.com/labstack/echo"
 	"github.com/sirupsen/logrus"
@@ -13,7 +13,7 @@ import (
 
 func main() {
 	var socketPath string
-	flag.StringVar(&socketPath, "socket", "/run/guest/volumes-service.sock", "Unix domain socket to listen on")
+	flag.StringVar(&socketPath, "socket", "/run/guest/plugin-secretscanner.sock", "Unix domain socket to listen on")
 	flag.Parse()
 
 	os.RemoveAll(socketPath)
