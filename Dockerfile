@@ -23,8 +23,9 @@ COPY ui /ui
 RUN npm run build
 
 FROM alpine
-LABEL org.opencontainers.image.title="SecretScanner Docker Extension" \
+LABEL org.opencontainers.image.title="SecretScanner" \
     org.opencontainers.image.description="Deepfence SecretScanner" \
+    com.docker.desktop.extension.icon="https://raw.githubusercontent.com/deepfence/secretscanner-docker-extension/main/deepfence.svg" \
     org.opencontainers.image.vendor="Deepfence Inc." \
     com.docker.desktop.extension.api.version=">= 0.2.3" \
     com.docker.extension.screenshots="" \

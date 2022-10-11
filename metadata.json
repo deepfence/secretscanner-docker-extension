@@ -1,7 +1,5 @@
 {
   "icon": "deepfence.svg",
-  "name": "Deepfence SecretScanner",
-  "provider": "Deepfence",
   "vm": {
     "composefile": "docker-compose.yaml",
     "exposes": {
