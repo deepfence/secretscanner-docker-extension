@@ -1,5 +1,7 @@
 # SecretScanner Docker Extension
 
+![CodeQL](https://github.com/deepfence/secretscanner-docker-extension/workflows/CodeQL/badge.svg)
+
 ## How to install in Docker Desktop ?
 *Note: Method to install this extension will change once SecretScanner extension is approved and published by Docker team*
 

@@ -100,7 +100,11 @@ export function App() {
                             <Typography variant="body1" color="text.secondary" sx={{ mt: 0 }}>
                                 Select the image from the dropdown and scan for secrets.
                             </Typography>
+
                             <Links />
+
+                            <Links ddClient={ddClient}/>
+
                         </Box>
                     </Box>
                 </Box>
