@@ -28,6 +28,17 @@ npm start
 docker extension dev ui-source deepfenceio/secretscanner-docker-extension http://localhost:3000
 ```
 
+3. Open or Reset Chrome Dev Tools
+
+Open
+```
+docker extension dev debug deepfenceio/secretscanner-docker-extension
+```
+Reset
+```
+docker extension dev reset deepfenceio/secretscanner-docker-extension
+```
+
 *Note: The React UI will not work in your browser, only in Docker Desktop.
 So please ignore the console warnings and do not install or update any packages.*
 
