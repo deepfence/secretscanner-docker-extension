@@ -1,6 +1,7 @@
 {
   "include": ["src"],
   "compilerOptions": {
+    "outDir": "build",
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react-jsx",
