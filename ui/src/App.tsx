@@ -1,10 +1,9 @@
 import React from 'react';
-import {Divider, Typography} from '@mui/material';
+import { createDockerDesktopClient } from '@docker/extension-api-client';
+import { Divider, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import ImageSearch from "./Components/ImageSearch";
-
-import {createDockerDesktopClient} from '@docker/extension-api-client';
 import SecretTable from './Components/secret-table';
-import {Box} from '@mui/system';
 import FullScreenDialog from './Components/details-dialog';
 import Links from './Components/links';
 
@@ -49,6 +48,7 @@ export function App() {
     const [response, setResponse] = React.useState<Secret[]>();
     const ddClient = useDockerDesktopClient();
     const [open, setOpen] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
     const [row, setRow] = React.useState({})
 
     const handleClickOpen = (row) => {
@@ -62,6 +62,7 @@ export function App() {
 
     const fetchAndDisplayResponse = async (image, setLoading) => {
         setLoading(true)
+        setIsLoading(true)
         setResponse(null)
         await ddClient.extension.vm?.service?.post('/secret-scan/scan', {
             "image_name": image,
@@ -72,9 +73,11 @@ export function App() {
                 setResponse(q.Secrets);
                 ddClient.desktopUI.toast.success('Secret scanning finished!');
                 setLoading(false)
+                setIsLoading(false)
             })
             .catch(err => {
                 setLoading(false)
+                setIsLoading(false)
                 ddClient.desktopUI.toast.error('Error scanning image, check console for errors');
                 console.error('error', err)
             })
@@ -82,37 +85,45 @@ export function App() {
 
     return (
         <>
-            <Box sx={{marginTop: '2rem'}}>
-                <Box sx={{m: '2rem', marginBottom: '1rem'}}>
-                    <Box sx={{display: 'flex'}}>
-                        <img style={{marginTop: '0.5rem'}} src="images/deepfence.svg" alt="Deepfence Logo"
-                             height="60px"/>
-                        <Box sx={{marginLeft: '1.5rem', marginTop: '0rem'}}>
+            <Box sx={{ marginTop: '2rem' }}>
+                <Box sx={{ m: '2rem', marginBottom: '1rem' }}>
+                    <Box sx={{ display: 'flex' }}>
+                        <img style={{ marginTop: '0.5rem' }} src="images/deepfence.svg" alt="Deepfence Logo"
+                            height="60px" />
+                        <Box sx={{ marginLeft: '1.5rem', marginTop: '0rem' }}>
                             <Typography variant="h3">Deepfence SecretScanner</Typography>
-                            <Typography variant="body1" color="text.secondary" sx={{mt: 2}}>
+                            <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
                                 Deepfence SecretScanner can find unprotected secrets in container images or file
                                 systems.
                             </Typography>
 
-                            <Typography variant="body1" color="text.secondary" sx={{mt: 0}}>
+                            <Typography variant="body1" color="text.secondary" sx={{ mt: 0 }}>
                                 Select the image from the dropdown and scan for secrets.
                             </Typography>
+
                             <Links ddClient={ddClient}/>
+
                         </Box>
                     </Box>
                 </Box>
             </Box>
-            <ImageSearch onChange={fetchAndDisplayResponse}/>
-            <Divider style={{marginTop: 10, marginBottom: 10}}/>
-            {response && <SecretTable
+
+            <ImageSearch onChange={fetchAndDisplayResponse} />
+
+            <Divider style={{ marginTop: 10, marginBottom: 10 }} />
+
+            <SecretTable
+                loadingRows={isLoading}
                 rows={response}
                 handleClickOpen={handleClickOpen}
-            />}
+            />
+
             <FullScreenDialog
                 open={open}
                 handleClose={handleClose}
                 row={row}
             />
+
         </>
     );
 }
