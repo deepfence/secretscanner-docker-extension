@@ -5,6 +5,27 @@
 ## How to install in Docker Desktop ?
 *Note: Method to install this extension will change once SecretScanner extension is approved and published by Docker team*
 
+
+## Building Multi-Arch Images for Extension
+
+check builder instance 
+```
+docker buildx ls
+```
+
+use existing `mybuilder0` to for buildx
+```
+docker buildx create --name mybuilder0 --use --bootstrap
+```
+
+push muli-arch image 
+```
+docker buildx build --push \
+--platform linux/amd64,linux/arm64 \
+--tag deepfenceio/secretscanner-extension .
+
+```
+
 ## Building locally
 
 1. Build the extension image
