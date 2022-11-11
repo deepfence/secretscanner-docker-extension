@@ -88,8 +88,8 @@ export function App() {
             <Box sx={{ marginTop: '2rem' }}>
                 <Box sx={{ m: '2rem', marginBottom: '1rem' }}>
                     <Box sx={{ display: 'flex' }}>
-                        <img style={{ marginTop: '0.5rem' }} src="images/deepfence.svg" alt="Deepfence Logo"
-                            height="60px" />
+                        <img src="images/SecretScanner.png" alt="Deepfence Logo"
+                            height="150px" />
                         <Box sx={{ marginLeft: '1.5rem', marginTop: '0rem' }}>
                             <Typography variant="h3">Deepfence SecretScanner</Typography>
                             <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>

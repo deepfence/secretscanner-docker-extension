@@ -1,5 +1,5 @@
 {
-  "icon": "deepfence.svg",
+  "icon": "SecretScanner.svg",
   "vm": {
     "composefile": "docker-compose.yaml",
     "exposes": {
