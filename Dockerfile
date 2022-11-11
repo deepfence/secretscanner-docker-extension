@@ -37,6 +37,6 @@ LABEL org.opencontainers.image.title="SecretScanner" \
 COPY --from=builder /backend/bin/service /
 COPY docker-compose.yaml .
 COPY metadata.json .
-COPY deepfence.svg .
+COPY SecretScanner.svg .
 COPY --from=client-builder /ui/build ui
 CMD /service -socket /run/guest-services/extension-secretscanner-docker-extension.sock
