@@ -14,7 +14,16 @@ docker build . -t deepfenceio/secretscanner-docker-extension
 
 2. Install the extension image, make sure Docker Desktop is installed and running
 ```
-docker extension install deepfenceio/secretscanner-docker-extension
+docker extension install docker.io/deepfenceio/secretscanner-extension:latest
+Extensions can install binaries, invoke commands and access files on your machine. 
+Are you sure you want to continue? [y/N] y
+Installing new extension "docker.io/deepfenceio/secretscanner-extension:latest"
+Installing service in Desktop VM...
+Setting additional compose attributes
+VM service started
+Installing Desktop extension UI for tab "SecretScanner"...
+Extension UI tab "SecretScanner" added.
+Extension "SecretScanner" installed successfully
 ```
 
 ## UI Development
